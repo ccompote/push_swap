@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 20:09:47 by ccompote          #+#    #+#             */
-/*   Updated: 2022/11/30 20:13:14 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/09 18:21:41 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@ typedef struct s_list
 	int value;
 	int steps;
 	struct s_list *next;
+	int cur_pos_b;
+	int cur_pos_a;
 }	t_list;
 
-t_list	*push_b(t_list *head_a);
+t_list	*push_b(t_list **head_a);
 int	ft_atoi(const char *str);
 void add_back(t_list *head, t_list *to_add);
 t_list	*new_list(int value);
-t_list	*swap_first_two(t_list *head);
-t_list	*rotate(t_list *head);
-t_list	*rotate_reverse(t_list *head);
+void	swap_first_two(t_list **head);
+void	rotate(t_list **head);
+void	rotate_reverse(t_list **head);
+void	push_first_from_b_to_a(t_list **a, t_list **b);
 t_list	*get_last(t_list *head);
 char	*ft_itoa(int n);
 void	ft_putstr(char *s);
@@ -37,18 +40,22 @@ void print_list(t_list *head);
 void print_list_steps(t_list *head);
 void	steps(t_list *head_a, t_list *head_b);
 void pc(int c);
-t_list **push_first_from_b_to_a(t_list *head_a, t_list *head_b);
+void	push_first_from_b_to_a(t_list **a, t_list **b);
+void	sort(t_list **head_a, t_list **head_b);
+int find_median(t_list *head);
+
 
 
 ///////////////// operations
-t_list *sa(t_list *head);
-t_list *sb(t_list *head);
-t_list **ss(t_list *head_a, t_list *head_b);
-t_list *ra(t_list *head);
-t_list *rb(t_list *head);
-t_list *rra(t_list *head);
-t_list *rrb(t_list *head);
-t_list **rr(t_list *head_a, t_list *head_b);
-t_list **rrr(t_list *head_a, t_list *head_b);
-
+void	sa(t_list **head);
+void	sb(t_list **head);
+void	ss(t_list **head_a, t_list **head_b);
+void	ra(t_list **head);
+void	rb(t_list **head);
+void	rra(t_list **head);
+void	rrb(t_list **head);
+void	rr(t_list **head_a, t_list **head_b);
+void	rrr(t_list **head_a, t_list **head_b);
+void	pb(t_list **head_a, t_list **head_b);
+void	pa(t_list **head_a, t_list **head_b);
 # endif
