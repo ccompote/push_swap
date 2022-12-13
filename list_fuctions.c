@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 20:34:06 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/09 18:20:53 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:17:12 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ void add_back(t_list *head, t_list *to_add)
 	}	
 	last = get_last(head);
 	last->next = to_add;
+}
+
+void add_front(t_list **head, t_list *to_add)
+{
+	to_add->next = *head;
+	*head = to_add;
 }
 
 t_list	*new_list(int value)
@@ -99,12 +105,15 @@ void	rotate_reverse(t_list **head)
 void print_list(t_list *head)
 {
 	t_list	*temp;
+	char *text;
 	
 	temp = head;
 	while (head)
 	{
-		ft_putstr(ft_itoa(head->value));
+		text = ft_itoa(head->value);
+		ft_putstr(text);
 		ft_putstr("->");
+		free(text);
 		head = head->next;
 	}
 	ft_putstr("null\n");
@@ -114,12 +123,14 @@ void print_list(t_list *head)
 void print_list_steps(t_list *head)
 {
 	t_list	*temp;
-	
+	char *text;
 	temp = head;
 	while (head)
 	{
-		ft_putstr(ft_itoa(head->steps));
+		text = ft_itoa(head->steps);
+		ft_putstr(text);
 		ft_putstr(", ");
+		free(text);
 		head = head->next;
 	}
 	pc('\n');
@@ -136,30 +147,34 @@ void	push_first_from_b_to_a(t_list **a, t_list **b)
 	*a = temp;
 }
 
-void swap(int* xp, int* yp)
+void swap(int *a, int *b)
 {
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
+    int temp;
+	
+	temp = *a;
+    *a = *b;
+    *b = temp;
 }
- 
-// Function to perform Selection Sort
-void selectionSort(int arr[], int n)
+
+void selectionSort(int *arr, int n)
 {
-    int i, j, min_idx;
+    int i;
+	int	j;
+	int	min_idx;
  
-    // One by one move boundary of unsorted subarray
-    for (i = 0; i < n - 1; i++) {
- 
-        // Find the minimum element in unsorted array
+	i = 0;
+    while (i < n - 1)
+	{
         min_idx = i;
-        for (j = i + 1; j < n; j++)
+		j = i + 1;
+        while (j < n)
+		{
             if (arr[j] < arr[min_idx])
                 min_idx = j;
- 
-        // Swap the found minimum element
-        // with the first element
+			j++;
+		}
         swap(&arr[min_idx], &arr[i]);
+		i++;
     }
 }
 
@@ -168,6 +183,12 @@ int find_median(t_list *head)
 	int *res;
 	int i;
 	res = malloc(sizeof(int) * list_len(head));
+
+	if (!res)
+	{
+		head->steps = -1;
+		return (0);
+	}
 	while (head)
 	{
 		res[i] = head->value;
@@ -178,4 +199,45 @@ int find_median(t_list *head)
 	i = res[i / 2];
 	free(res);
 	return(i);
+}
+
+int check_repetitions(t_list *head)
+{
+	int *res;
+	int i;
+	int len;
+
+	len = list_len(head);
+	res = malloc(sizeof(int) * len);
+	if (!res)
+		return (0);	
+	while (head)
+	{
+		res[i] = head->value;
+		i++;
+		head = head->next;
+	}
+	selectionSort(res, i);
+	i = 1;
+	while (i < len)
+	{
+		if (res[i] == res[i - 1])
+			{free(res);
+			return (0);}
+		i++;
+	}
+	free(res);
+	return(1);
+}
+
+void free_list(t_list *head)
+{
+	t_list *temp;
+
+	if (head)
+	{
+		temp = head->next;	
+		free(head);
+		free_list(temp);
+	}
 }

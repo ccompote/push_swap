@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:01:44 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/09 18:27:51 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:08:10 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ t_list	*push_b(t_list **head_a)
 	yet_another_temp = NULL;
 	temp = NULL;
 	med = find_median(*head_a);
+	if ((*head_a)->steps == -1)
+	{
+		return (NULL);
+	}
 	while (other_temp)
 	{
 		if (other_temp->value != minim && other_temp->value != maxim && other_temp->value != med)

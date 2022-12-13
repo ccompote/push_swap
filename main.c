@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 20:22:53 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/09 17:29:04 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/11 21:14:12 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,38 @@
 // 	print_list(head_b);
 // }
 
+int finish(t_list *head_a, t_list *head_b, char *exit_message)
+{
+	free_list(head_a);
+	free_list(head_b);
+	ft_putstr(exit_message);
+	return (0);
+}
 
-int	main(int argc, char **argv)
+int	sssort(int argc, char **argv)
 {
 	t_list	*head_a;
 	t_list	*head_b;
-	t_list	**temp;
 	int		i;
 	int 	len_a;
 	int 	len_b;
+	char **other_var;
 	
-	i = 1;
+	i = 0;
+	other_var = split_if_needed(argc, argv);
 	if (argc < 2)
 		return (0);
-	head_a = new_list(ft_atoi(argv[i++]));
-	while (i < argc)
-		add_back(head_a, new_list(ft_atoi(argv[i++])));
+	head_a = new_list(ft_atoi(other_var[i++]));
+	head_b = NULL;
+	if (!head_a)
+		return (finish(head_a, head_b, "Nothing given or malloc failed\n"));
+	while (other_var[i])
+		add_front(&head_a, new_list(ft_atoi(other_var[i++])));
+	if (check_repetitions(head_a) == 0)
+		return (finish(head_a, head_b, "input is incorrect or malloc failed\n"));
 	head_b = push_b(&head_a);
-	print_list(head_b);
-	print_list(head_a);
+	if (!head_b && head_a->steps == -1)
+		return (finish(head_a, head_b, "Malloc failed\n"));
 	/* steps(head_a, head_b);
 	
 	print_list_steps(head_b);
@@ -76,7 +89,6 @@ int	main(int argc, char **argv)
 	sa(&head_a);
 	print_list(head_a); */
 	sort(&head_a, &head_b);
-	print_list(head_b);
 	print_list(head_a);
 
 /* 	while(head_a)
@@ -90,5 +102,12 @@ int	main(int argc, char **argv)
 		printf("%d\n", head_b->value);
 		head_b = head_b->next;
 	} */
-	return (0);
+	free_split(other_var);
+	return finish(head_a, head_b, "everything is good\n");
+}
+
+int main(int argc, char **argv)
+{
+	sssort(argc, argv);
+	// system("leaks a.out");
 }

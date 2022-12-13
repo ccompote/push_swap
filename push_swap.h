@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 20:09:47 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/09 18:21:41 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/11 21:13:46 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct s_list
 {
@@ -43,6 +44,13 @@ void pc(int c);
 void	push_first_from_b_to_a(t_list **a, t_list **b);
 void	sort(t_list **head_a, t_list **head_b);
 int find_median(t_list *head);
+int check_repetitions(t_list *head);
+void free_list(t_list *head);
+void add_front(t_list **head, t_list *to_add);
+char	**ft_split(char const *s, char c);
+char **split_if_needed(int argc, char **argv);
+void free_split(char **splitted);
+
 
 
 

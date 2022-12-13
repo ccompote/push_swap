@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:05:12 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/09 18:38:09 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:18:44 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	steps(t_list *head_a, t_list *head_b)
 	cur_pos_b = 0;
 	if (!head_b)
 		return ;
-	printf("running steps\n");
 	while (head_b)
 	{
 		temp = head_a;
@@ -64,7 +63,6 @@ void	steps(t_list *head_a, t_list *head_b)
 			list_len(head_b))) + 1;
 			head_b->cur_pos_a = 0;
 			head_b->cur_pos_b = cur_pos_b;
-			printf("need to push to very beginning\n");
 		}
 			// in case we need to put element from b to zero position in a
 			
@@ -80,7 +78,6 @@ void	steps(t_list *head_a, t_list *head_b)
 				list_len(head_b))) + 1;
 				head_b->cur_pos_a = cur_pos_a;
 				head_b->cur_pos_b = cur_pos_b;
-				printf("need to push to very beginning\n");
 			}
 			temp = temp->next;
 			cur_pos_a++;
@@ -138,17 +135,10 @@ void	push_best_b_to_a(t_list **head_a, t_list **head_b)
 	{	
 		temp = a;
 		if (b->steps == min_steps)
-		printf("huyak\n");
-		{print_list(*head_a);
-		print_list(*head_b);
-		print_list_steps(*head_b);
-		printf("b->cur_pos_a = %d, b->cur_pos_b = %d\n", b->cur_pos_a, b->cur_pos_b);
-		printf("b->steps = %d\n", b->steps);
-		
+		{
 			// rotating both left
 			if (min_steps == max(b->cur_pos_a, b->cur_pos_b) + 1)
 			{
-				printf("rotating both left\n");
 				if (b->cur_pos_a < b->cur_pos_b)
 				{
 					iter = b->cur_pos_a;
@@ -185,7 +175,6 @@ void	push_best_b_to_a(t_list **head_a, t_list **head_b)
 			//rotate both right
 			else if(min_steps == max(list_len(a) - b->cur_pos_a, list_len(*head_b) - b->cur_pos_b) + 1)
 			{
-				printf("rotating both right\n");
 				if (list_len(a) - b->cur_pos_a < list_len(*head_b) - b->cur_pos_b)
 				{
 					iter = list_len(a) - b->cur_pos_a;
@@ -222,9 +211,7 @@ void	push_best_b_to_a(t_list **head_a, t_list **head_b)
 			//rotate b to left, a to right
 			else if (min_steps == b->cur_pos_b + list_len(a) - b->cur_pos_a + 1)
 			{
-				printf("rotating b left, a right\n");
 				iter = b->cur_pos_b;
-				print_list(a);
 				while (iter)
 				{
 					rb(&b);
@@ -236,13 +223,11 @@ void	push_best_b_to_a(t_list **head_a, t_list **head_b)
 					rra(&a);
 					iter--;
 				}
-				print_list(a);
 				pa(&a, &b);
 			}
 			//rotate b to right a to left
 			else if (min_steps == b->cur_pos_a + list_len(*head_b) - b->cur_pos_b + 1)
 			{
-				printf("rotating b right, a left\n");
 				iter = list_len(*head_b) - b->cur_pos_b;
 				while (iter)
 				{
@@ -342,7 +327,6 @@ void	sort(t_list **head_a, t_list **head_b)
 		steps(a, b);
 		push_best_b_to_a(&a, &b);
 	}
-	print_list(a);
 	final_rotate(&a);
 	*head_a = a;
 	*head_b = b;
