@@ -6,16 +6,19 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:40 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/11 21:12:33 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/15 20:52:34 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void free_split(char **splitted)
+void	free_split(char **splitted)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
+	if (!splitted)
+		return ;
 	while (splitted[i])
 	{
 		free(splitted[i]);
@@ -24,13 +27,13 @@ void free_split(char **splitted)
 	free(splitted);
 }
 
-int all_digits(char **argv)
+int	all_digits(char **argv)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 1;
-	while(argv[i])
+	while (argv[i])
 	{
 		j = 0;
 		while (argv[i][j])
@@ -44,9 +47,9 @@ int all_digits(char **argv)
 	return (1);
 }
 
-int ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i++])
@@ -74,11 +77,10 @@ char	*ft_strdup(const char *s1)
 	return (p);
 }
 
-char **copy_argv(char **argv)
+char	**copy_argv(char **argv)
 {
-	char **res;
-	int i;
-	int j;
+	char	**res;
+	int		i;
 
 	i = 0;
 	while (argv[i++])
@@ -87,12 +89,26 @@ char **copy_argv(char **argv)
 	i = 0;
 	while (argv[++i])
 		res[i - 1] = ft_strdup(argv[i]);
-	return res;
+	return (res);
 }
 
-char  **split_if_needed(int argc, char **argv)
+int	all_ints(char **argv)
 {
-	char **res;
+	int	i;
+
+	i = 1;
+	while (argv[i])
+	{
+		if (!check_int(argv[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+char	**split_if_needed(int argc, char **argv)
+{
+	char	**res;
 
 	if (argc == 2 && !all_digits(argv))
 	{
@@ -100,7 +116,7 @@ char  **split_if_needed(int argc, char **argv)
 	}
 	else
 		res = copy_argv(argv);
-	if (!all_digits(res))
+	if (!all_digits(res) || !all_ints(res))
 	{
 		free_split(res);
 		return (NULL);

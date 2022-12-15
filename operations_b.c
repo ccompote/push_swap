@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_str.c                                        :+:      :+:    :+:   */
+/*   operations_b.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 20:47:48 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/15 19:52:41 by ccompote         ###   ########.fr       */
+/*   Created: 2022/12/15 19:56:02 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/15 19:56:29 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pc(int c)
+void	rb(t_list **head)
 {
-	write(1, &c, 1);
+	rotate(head);
+	write(1, "rb\n", 3);
 }
 
-void	ft_putstr(char *s)
+void	rrb(t_list **head)
 {
-	int	i;
-
-	i = 0;
-	if (s == NULL)
-		return ;
-	while (s[i] != '\0')
-	{
-		pc(s[i]);
-		i++;
-	}
+	rotate_reverse(head);
+	write(1, "rrb\n", 4);
 }

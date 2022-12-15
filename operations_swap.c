@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_str.c                                        :+:      :+:    :+:   */
+/*   operations_swap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 20:47:48 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/15 19:52:41 by ccompote         ###   ########.fr       */
+/*   Created: 2022/12/15 19:53:19 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/15 19:54:13 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pc(int c)
+void	sa(t_list **head)
 {
-	write(1, &c, 1);
+	swap_first_two(head);
+	write(1, "sa\n", 3);
 }
 
-void	ft_putstr(char *s)
+void	sb(t_list **head)
 {
-	int	i;
+	swap_first_two(head);
+	write(1, "sb\n", 3);
+}
 
-	i = 0;
-	if (s == NULL)
-		return ;
-	while (s[i] != '\0')
-	{
-		pc(s[i]);
-		i++;
-	}
+void	ss(t_list **head_a, t_list **head_b)
+{
+	swap_first_two(head_b);
+	swap_first_two(head_a);
+	write(1, "ss\n", 3);
 }

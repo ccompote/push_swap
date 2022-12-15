@@ -6,12 +6,11 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:05:12 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/11 20:18:44 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/15 20:12:54 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	list_len(t_list *head)
 {
@@ -63,9 +62,7 @@ void	steps(t_list *head_a, t_list *head_b)
 			list_len(head_b))) + 1;
 			head_b->cur_pos_a = 0;
 			head_b->cur_pos_b = cur_pos_b;
-		}
-			// in case we need to put element from b to zero position in a
-			
+		}			
 		cur_pos_a = 1;
 		while (temp->next)
 		{
@@ -74,8 +71,8 @@ void	steps(t_list *head_a, t_list *head_b)
 			{
 				head_b->steps = min(min(max(cur_pos_b, cur_pos_a),
 				max(list_len(head_b), list_len(temp->next))),
-				min(cur_pos_b + list_len(temp->next), cur_pos_a +
-				list_len(head_b))) + 1;
+				min(cur_pos_b + list_len(temp->next), cur_pos_a
+				+ list_len(head_b))) + 1;
 				head_b->cur_pos_a = cur_pos_a;
 				head_b->cur_pos_b = cur_pos_b;
 			}
@@ -87,27 +84,11 @@ void	steps(t_list *head_a, t_list *head_b)
 	}
 }
 
-
-// A: 1 8 10 100 -20
-// B: -1 3 2 4 5 7 9 66 38
-
-// A: 100 -20
-// B: -1 3 2 4 5 7 9 66 38
-
-// cur_postion_a - amount of steps we need to rotate a to left
-// cur_postion_b - amount of steps we need to rotate b to left
-//list_len(a) amount of steps we need to rotate a to right
-//list_len(b) amount of steps we need to rotate b to right
-//(max(cur_pos_b, cur_pos_a) - how much needs to be rotated to left
-//max(list_len(head_b), list_len(temp->next)) how much needs to be rotated to right
-//cur_pos_b + list_len(temp->next) rotating b to left, a to right
-//cur_pos_a + list_len(head_b) rotating b to right, a to left
-
-int find_min_steps(t_list *b)
+int	find_min_steps(t_list *b)
 {
 	int	min_steps;
 
-	min_steps = 2147483647;
+	min_steps = MAX_INT;
 	while (b)
 	{
 		if (b->steps < min_steps)
@@ -119,24 +100,22 @@ int find_min_steps(t_list *b)
 
 void	push_best_b_to_a(t_list **head_a, t_list **head_b)
 {
-	t_list *a;
-	t_list *b;
+	t_list	*a;
+	t_list	*b;
 	t_list	*temp;
-	int min_steps;
-	int	cur_pos_a;
-	int	cur_pos_b;
-	int iter;
+	int		min_steps;
+	int		cur_pos_b;
+	int		iter;
 
 	a = *head_a;
 	b = *head_b;
+	temp = *head_b;
 	min_steps = find_min_steps(b);
 	cur_pos_b = 0;
-	while (head_b)
+	while (temp)
 	{	
-		temp = a;
 		if (b->steps == min_steps)
 		{
-			// rotating both left
 			if (min_steps == max(b->cur_pos_a, b->cur_pos_b) + 1)
 			{
 				if (b->cur_pos_a < b->cur_pos_b)
@@ -144,120 +123,120 @@ void	push_best_b_to_a(t_list **head_a, t_list **head_b)
 					iter = b->cur_pos_a;
 					while (iter)
 					{
-						rr(&a, &b);
+						rr(head_a, head_b);
 						iter--;
 					}
 					iter = b->cur_pos_b - b->cur_pos_a;
 					while (iter)
 					{
-						rb(&b);
+						rb(head_b);
 						iter--;
 					}
-					pa(&a, &b);
+					pa(head_a, head_b);
 				}
 				else
 				{
 					iter = b->cur_pos_b;
 					while (iter)
 					{
-						rr(&a, &b);
+						rr(head_a, head_b);
 						iter--;
 					}
 					iter = b->cur_pos_a - b->cur_pos_b;
 					while (iter)
 					{
-						ra(&a);
+						ra(head_a);
 						iter--;
 					}
-					pa(&a, &b);
+					pa(head_a, head_b);
 				}
 			}
-			//rotate both right
-			else if(min_steps == max(list_len(a) - b->cur_pos_a, list_len(*head_b) - b->cur_pos_b) + 1)
+			else if (min_steps == max(list_len(a)
+				- b->cur_pos_a, list_len(*head_b) - b->cur_pos_b) + 1)
 			{
-				if (list_len(a) - b->cur_pos_a < list_len(*head_b) - b->cur_pos_b)
+				if (list_len(a) - b->cur_pos_a
+					< list_len(*head_b) - b->cur_pos_b)
 				{
 					iter = list_len(a) - b->cur_pos_a;
 					while (iter)
 					{
-						rrr(&a, &b);
+						rrr(head_a, head_b);
 						iter--;
 					}
-					iter = list_len(*head_b) - b->cur_pos_b - list_len(a) - b->cur_pos_a;
+					iter = list_len(*head_b) - b->cur_pos_b
+						- list_len(*head_a) + b->cur_pos_a;
 					while (iter)
 					{
-						rrb(&b);
+						rrb(head_b);
 						iter--;
 					}
-					pa(&a, &b);
+					pa(head_a, head_b);
 				}
 				else
 				{
 					iter = list_len(*head_b) - b->cur_pos_b;
 					while (iter)
 					{
-						rrr(&a, &b);
+						rrr(head_a, head_b);
 						iter--;
 					}
-					iter = list_len(a) - b->cur_pos_a - list_len(*head_b) - b->cur_pos_b;
+					iter = list_len(*head_a) - b->cur_pos_a
+						- list_len(*head_b) + b->cur_pos_b;
 					while (iter)
 					{
-						rra(&a);
+						rra(head_a);
 						iter--;
 					}
-					pa(&a, &b);
+					pa(head_a, head_b);
 				}
 			}
-			//rotate b to left, a to right
 			else if (min_steps == b->cur_pos_b + list_len(a) - b->cur_pos_a + 1)
 			{
 				iter = b->cur_pos_b;
 				while (iter)
 				{
-					rb(&b);
+					rb(head_b);
 					iter--;
 				}
 				iter = list_len(a) - b->cur_pos_a;
 				while (iter)
 				{
-					rra(&a);
+					rra(head_a);
 					iter--;
 				}
-				pa(&a, &b);
+				pa(head_a, head_b);
 			}
-			//rotate b to right a to left
-			else if (min_steps == b->cur_pos_a + list_len(*head_b) - b->cur_pos_b + 1)
+			else if (min_steps == b->cur_pos_a
+				+ list_len(*head_b) - b->cur_pos_b + 1)
 			{
 				iter = list_len(*head_b) - b->cur_pos_b;
 				while (iter)
 				{
-					rrb(&b);
+					rrb(head_b);
 					iter--;
 				}
 				iter = b->cur_pos_a;
 				while (iter)
 				{
-					ra(&a);
+					ra(head_a);
 					iter--;
 				}
-				pa(&a, &b);
+				pa(head_a, head_b);
 			}
-			*head_a = a;
-			*head_b = b;
 			return ;
 		}
 		b = b->next;
 	}
 }
 
-void final_rotate(t_list **head_a)
+void	final_rotate(t_list **head_a)
 {
 	t_list	*temp;
-	int i;
-	int	index;
-	int	counter;
+	int		i;
+	int		index;
+	int		counter;
 
-	i = 2147483647;
+	i = MAX_INT;
 	index = 0;
 	temp = *head_a;
 	counter = 0;
@@ -288,36 +267,25 @@ void final_rotate(t_list **head_a)
 			index--;
 		}
 	}
-	
 }
 
-/*
-1 2 3
-2 3 1
-3 1 2
-
-1 3 2
-2 1 3
-3 2 1
-*/
-void initial_swap(t_list **head_a)
+void	initial_swap(t_list **head_a)
 {
-	t_list *a;
+	t_list	*a;
 
 	if (list_len(*head_a) != 3)
 		return ;
 	a = *head_a;
-	if (a->value < a->next->value && a->value < a->next->next->value && a->next->value > a->next->next->value
-		|| a->value > a->next->value && a->value < a->next->next->value && a->next->value < a->next->next->value
-		|| a->value > a->next->value && a->value > a->next->next->value && a->next->value > a->next->next->value
-		)
+	if ((a->value < a->next->value && a->value < a->next->next->value && a->next->value > a->next->next->value)
+		|| (a->value > a->next->value && a->value < a->next->next->value && a->next->value < a->next->next->value)
+		|| (a->value > a->next->value && a->value > a->next->next->value && a->next->value > a->next->next->value))
 		sa(head_a);
 }
 
 void	sort(t_list **head_a, t_list **head_b)
 {
-	t_list *a;
-	t_list *b;
+	t_list	*a;
+	t_list	*b;
 
 	a = *head_a;
 	b = *head_b;
@@ -331,4 +299,3 @@ void	sort(t_list **head_a, t_list **head_b)
 	*head_a = a;
 	*head_b = b;
 }
-

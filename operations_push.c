@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_str.c                                        :+:      :+:    :+:   */
+/*   operations_push.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 20:47:48 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/15 19:52:41 by ccompote         ###   ########.fr       */
+/*   Created: 2022/12/15 19:55:04 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/15 19:55:45 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pc(int c)
+void	pa(t_list **head_a, t_list **head_b)
 {
-	write(1, &c, 1);
+	push_first_from_b_to_a(head_a, head_b);
+	write(1, "pa\n", 3);
 }
 
-void	ft_putstr(char *s)
+void	pb(t_list **head_a, t_list **head_b)
 {
-	int	i;
-
-	i = 0;
-	if (s == NULL)
-		return ;
-	while (s[i] != '\0')
-	{
-		pc(s[i]);
-		i++;
-	}
+	push_first_from_b_to_a(head_b, head_a);
+	write(1, "pb\n", 3);
 }
