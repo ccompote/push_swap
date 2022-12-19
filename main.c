@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 20:22:53 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/15 19:58:16 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/19 22:54:16 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	sssort(int argc, char **argv)
 	if (check_repetitions(head_a) == 0)
 		return (finish(head_a, head_b, other_var, "Error\n"));
 	head_b = push_b(&head_a);
-	if (!head_b && head_a->steps == -1)
+	if (!head_b || head_a->steps == -1)
 		return (finish(head_a, head_b, other_var, "Error\n"));
 	sort(&head_a, &head_b);
 	return (finish(head_a, head_b, other_var, ""));
@@ -52,4 +52,5 @@ int	sssort(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	sssort(argc, argv);
+	system("leaks a.out");
 }

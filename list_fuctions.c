@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 20:34:06 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/15 20:26:43 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/19 22:27:44 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,20 +214,15 @@ int	check_repetitions(t_list *head)
 		return (0);
 	while (head)
 	{
-		res[i] = head->value;
-		i++;
+		res[i++] = head->value;
 		head = head->next;
 	}
 	selection_sort(res, i);
-	i = 1;
-	while (i < len)
+	i = 0;
+	while (++i < len)
 	{
 		if (res[i] == res[i - 1])
-		{
-			free(res);
-			return (0);
-		}
-		i++;
+			return (free(res), 0);
 	}
 	free(res);
 	return (1);

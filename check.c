@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:40 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/15 20:52:34 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:38:13 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	all_digits(char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			if (argv[i][j] < '0' || argv[i][j] > '9')
+			if ((argv[i][j] < '0' || argv[i][j] > '9') && argv[i][j] != '-')
 				return (0);
 			j++;
 		}

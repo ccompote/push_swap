@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 20:09:47 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/15 19:52:04 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/19 22:53:39 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,7 @@ void	rr(t_list **head_a, t_list **head_b);
 void	rrr(t_list **head_a, t_list **head_b);
 void	pb(t_list **head_a, t_list **head_b);
 void	pa(t_list **head_a, t_list **head_b);
+int		finish(t_list *head_a, t_list *head_b,
+			char **other_var, char *exit_message);
+
 #endif
