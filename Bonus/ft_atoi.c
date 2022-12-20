@@ -6,11 +6,11 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:31:22 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/20 16:44:35 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:11:28 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "bonus.h"
 
 int	ft_atoi(const char *str)
 {
@@ -31,4 +31,24 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return (res * sign);
+}
+
+int	list_len(t_list *head)
+{
+	t_list	*temp;
+	int		res;
+
+	res = 0;
+	temp = head;
+	while (temp)
+	{
+		temp = temp->next;
+		res++;
+	}
+	return (res);
+}
+
+int	main(int argc, char **argv)
+{
+	worker(argc, argv);
 }

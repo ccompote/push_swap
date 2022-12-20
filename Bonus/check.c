@@ -6,11 +6,11 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:40 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/20 16:45:49 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:30:32 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "bonus.h"
 
 void	free_split(char **splitted)
 {

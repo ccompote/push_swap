@@ -6,7 +6,7 @@
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 20:09:47 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/19 22:53:39 by ccompote         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:32:20 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,19 @@ void	pb(t_list **head_a, t_list **head_b);
 void	pa(t_list **head_a, t_list **head_b);
 int		finish(t_list *head_a, t_list *head_b,
 			char **other_var, char *exit_message);
+int		find_min_steps(t_list *b);
+void	f1(t_list *b, t_list **head_a, t_list **head_b);
+void	f2(t_list *b, t_list **head_a, t_list **head_b);
+void	f3(t_list *a, t_list *b, t_list **head_a, t_list **head_b);
+void	f4(t_list *b, t_list **head_a, t_list **head_b);
+void	f5(t_list *a, t_list *b, t_list **head_a, t_list **head_b);
+void	f6(t_list *b, t_list **head_a, t_list **head_b);
+void	f7(t_list *b, t_list **head_a, t_list **head_b);
+void	f8(t_list *a, t_list *b, t_list **head_a, t_list **head_b);
+int		ll(int cur_pos_b, int cur_pos_a, t_list *head_b, t_list *temp);
+void	oll(t_list *head_b, t_list *temp, int cur_pos_a, int cur_pos_b);
+int		min(int a, int b);
+int		max(int a, int b);
+char	*ft_strdup(const char *s1);
 
 #endif

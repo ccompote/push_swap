@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/26 12:31:22 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/20 16:44:35 by ccompote         ###   ########.fr       */
+/*   Created: 2022/03/25 17:08:29 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/20 20:36:43 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "bonus.h"
 
-int	ft_atoi(const char *str)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	long int	res;
-	int			sign;
+	size_t			i;
+	unsigned char	*s11;
+	unsigned char	*s22;
 
-	res = 0;
-	sign = 1;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-		sign *= -1;
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
+	s11 = (unsigned char *)s1;
+	s22 = (unsigned char *)s2;
+	i = 0;
+	while (s11[i] != '\0' && s22[i] != '\0' && (i < n))
 	{
-		res = res * 10 + *str - '0';
-		str++;
+		if (s11[i] != s22[i])
+			return (s11[i] - s22[i]);
+		i++;
 	}
-	return (res * sign);
+	if (i != n)
+		return (s11[i] - s22[i]);
+	return (0);
 }
