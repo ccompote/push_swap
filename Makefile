@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/26 14:59:49 by ccompote          #+#    #+#              #
-#    Updated: 2022/12/20 22:07:07 by ccompote         ###   ########.fr        #
+#    Created: 2022/12/23 17:57:36 by ccompote          #+#    #+#              #
+#    Updated: 2022/12/23 17:57:39 by ccompote         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-NAME_B = Bonus/bonus_exec
+NAME_B = Bonus/checker
 
 SRCS =  a_foreplay.c \
 b_culmination.c \
@@ -68,7 +68,7 @@ clean :
 	@rm -f $(OBJ) $(OBJ_B) bonus_exec
 	
 fclean : clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) checker
 		
 re : fclean all
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 17:05:12 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/20 16:36:42 by ccompote         ###   ########.fr       */
+/*   Created: 2022/12/23 17:59:00 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/23 17:59:02 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ void	push_best_b_to_a(t_list **head_a, t_list **head_b, t_list *a, t_list *b)
 {
 	t_list	*temp;
 	int		min_steps;
-	int		cur_pos_b;
 
 	temp = *head_b;
 	min_steps = find_min_steps(b);
-	cur_pos_b = 0;
 	while (temp)
 	{	
 		if (b->steps == min_steps)

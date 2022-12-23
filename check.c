@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/11 20:23:40 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/20 16:45:49 by ccompote         ###   ########.fr       */
+/*   Created: 2022/12/23 17:58:54 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/23 17:58:56 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	all_digits(char **argv)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
 		j = 0;
@@ -66,7 +66,7 @@ int	all_ints(char **argv)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
 		if (!check_int(argv[i]))
@@ -80,7 +80,7 @@ char	**split_if_needed(int argc, char **argv)
 {
 	char	**res;
 
-	if (argc == 2 && !all_digits(argv))
+	if (argc == 2 && !all_digits(argv + 1))
 	{
 		res = ft_split(argv[1], ' ');
 	}

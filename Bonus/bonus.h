@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 19:18:17 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/20 22:12:30 by ccompote         ###   ########.fr       */
+/*   Created: 2022/12/23 17:59:12 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/23 17:59:14 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void	push_first_from_b_to_a(t_list **a, t_list **b);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	free_list(t_list *head);
 void	free_split(char **splitted);
-int	worker(int argc, char **argv);
-int	check_if_stack_sorted(t_list *head);
-void	read_instructions(t_list **head_a, t_list **head_b);
-void	exec_instruction(t_list **head_a, t_list **head_b, char *str);
-void	extra_exec_functions(t_list **head_a, t_list **head_b, char *str);
-
+int		worker(int argc, char **argv);
+int		check_if_stack_sorted(t_list *head);
+int		read_instructions(t_list **head_a, t_list **head_b);
+int		exec_instruction(t_list **head_a, t_list **head_b, char *str);
+int		extra_exec_functions(t_list **head_a, t_list **head_b, char *str);
+int		check_repetitions(t_list *head);
 #endif

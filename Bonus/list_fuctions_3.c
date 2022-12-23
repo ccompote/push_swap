@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 16:49:01 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/20 22:10:56 by ccompote         ###   ########.fr       */
+/*   Created: 2022/12/23 18:00:06 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/23 18:00:08 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	check_int(char *str)
 	{
 		res = res * 10 + *str - '0';
 		str++;
-		if (res > MAX_INT || res < MIN_INT)
+		if (res * sign > MAX_INT || res * sign < MIN_INT)
 			return (0);
 	}
 	res *= sign;

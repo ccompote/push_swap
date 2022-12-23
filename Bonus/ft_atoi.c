@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/26 12:31:22 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/20 22:11:28 by ccompote         ###   ########.fr       */
+/*   Created: 2022/12/23 17:59:34 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/23 17:59:35 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,27 @@ int	list_len(t_list *head)
 	return (res);
 }
 
+int	check_if_stack_sorted(t_list *head)
+{
+	long	i;
+
+	i = MIN_INT - 1;
+	while (head)
+	{
+		if (head->value <= i)
+			return (0);
+		i = head->value;
+		head = head->next;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
-	worker(argc, argv);
+	int	i;
+
+	i = worker(argc, argv);
+	if (i == 2)
+		ft_putstr("Error\n");
+	return (0);
 }

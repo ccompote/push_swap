@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccompote <ccompote@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 19:01:44 by ccompote          #+#    #+#             */
-/*   Updated: 2022/12/19 22:53:13 by ccompote         ###   ########.fr       */
+/*   Created: 2022/12/23 17:59:06 by ccompote          #+#    #+#             */
+/*   Updated: 2022/12/23 17:59:08 by ccompote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_list	*push_b(t_list **head_a)
 {
 	t_list	*head_b;
 	t_list	*other_temp;
-	t_list	*yet_another_temp;
 	int		*min_med_max;
 
 	other_temp = *head_a;
@@ -49,7 +48,6 @@ t_list	*push_b(t_list **head_a)
 	if (!min_med_max)
 		return (NULL);
 	head_b = NULL;
-	yet_another_temp = NULL;
 	if ((*head_a)->steps == -1)
 		return (NULL);
 	while (list_len(other_temp) > 3)
